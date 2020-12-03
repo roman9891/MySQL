@@ -1,25 +1,55 @@
-import logo from './logo.svg';
 import './App.css';
+import Input from './Components/Input'
+import Table from './Components/TableList'
+import React, { Component } from 'react';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+  state = {
+    tables: [{
+      tableName: `TestTable`,
+      columns: [
+        {
+        columnName: `ID`,
+        type: `integer`
+        },
+        {
+          columnName: `String`,
+          type: `string`
+        },
+        {
+          columnName: `Integer`,
+          type: `integer`
+        },
+        {
+          columnName: `Real`,
+          type: `real`
+        },
+        {
+          columnName: `Date`,
+          type: `date`
+        }
+      ],
+      rows: []
+    }]
+  }
+
+  appHandler = table => {
+    const newTable = {...table}
+    
+    this.setState({
+      tables: this.state.tables.concat(newTable)
+    })
+  }
+
+  render() {
+    return (
+      <div>
+          <p>Notes: add option for additional INSERT inputs//add plus button > when clicked, adds entry to parent array//insert renders inputs equal to size of entry array</p>
+          <Input appHandler={this.appHandler} tables={this.state.tables}/>
+          <Table tables={this.state.tables}/>
+      </div>
+    );
+  }
 }
 
 export default App;
