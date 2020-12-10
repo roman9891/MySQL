@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import RecursiveButton from './RecursiveColumn'
+import Create from './Create'
 import Insert from './Insert'
 
 class Input extends Component {
@@ -58,8 +59,6 @@ class Input extends Component {
     addColumn = () => {
         this.setState({createColumns: [...this.state.createColumns, {columnName: ``, type: `text`}]}, () => console.log(this.state))
     }
-
-    renderTableNames = tables => tables.map((table,i) => <option key={i} value={table.tableName}>{table.tableName}</option>)
     
     render() {
         return (
@@ -85,12 +84,7 @@ class Input extends Component {
                     </span>
                 : null}
                 {this.state.crud === `insert` ? 
-                    <span>
-                        <Insert tables={this.props.tables}/>
-                        {/* <input placeholder='table name'></input>
-                        {'('}<input placeholder='column names'></input>{')VALUES'}
-                        {'('}<input placeholder='values'></input>{');'} */}
-                    </span>
+                    <Insert tables={this.props.tables} rowHandler={this.props.rowHandler}/>
                 : null}
                 {this.state.crud === `select` ? <input placeholder='column names'></input> : null}
                 {this.state.crud === `update` ? <input placeholder='table name'></input> : null}

@@ -1,6 +1,6 @@
 import './App.css';
 import Input from './Components/Input'
-import Table from './Components/TableList'
+import TableList from './Components/TableList'
 import React, { Component } from 'react';
 
 class App extends Component {
@@ -31,14 +31,14 @@ class App extends Component {
       ],
       rows: [
         {
-          ID: 0,
+          ID: 1,
           String: 'thing',
           Integer: '',
           Real: 4.37,
           Date: '12/10/20'
         },
         {
-          ID: 1,
+          ID: 2,
           String: 'doodad',
           Integer: 7,
           Real: 5.37,
@@ -56,12 +56,18 @@ class App extends Component {
     })
   }
 
+  rowHandler = row => {
+    const newRow = {...row}
+
+    console.log('rowHandler', newRow)
+  }
+
   render() {
     return (
       <div>
           <p>Notes: add option for additional INSERT inputs//add plus button > when clicked, adds entry to parent array//insert renders inputs equal to size of entry array</p>
-          <Input appHandler={this.appHandler} tables={this.state.tables}/>
-          <Table tables={this.state.tables}/>
+          <Input appHandler={this.appHandler} rowHandler={this.rowHandler} tables={this.state.tables}/>
+          <TableList tables={this.state.tables}/>
       </div>
     );
   }

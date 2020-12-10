@@ -9,6 +9,7 @@ class Table extends Component {
     renderCells = (row, table) => table.columns.map((column, i) => <td>{row[column.columnName] ? row[column.columnName] : ''}</td>)
     
     render() {
+        console.log(this.props.table)
         return (
             <div>
                 <p>{this.props.table.tableName}</p>
@@ -19,7 +20,7 @@ class Table extends Component {
                         </tr>
                     </thead>
                     <tbody>
-                        {this.renderRows(this.props.table)}
+                        {this.props.table.rows ? this.renderRows(this.props.table) : null}
                     </tbody>
                 </table>
             </div>

@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 
 class Insert extends Component {
     state = {
-        table: ``
+        table: ``,
+        row: {}
     }
 
     renderTableNames = tables => tables.map((table,i) => 
@@ -23,6 +24,13 @@ class Insert extends Component {
         () => console.log(this.state))
     }
 
+    runClickHandler = e => {
+        //send row up to app
+        //grabs row from state?
+        //app adds finds table and concats row into .rows
+        this.props.rowHandler(this.state.row)
+    }
+
     render() {
         console.log(this.props.tables[0]?.tableName)
         return (
@@ -33,11 +41,12 @@ class Insert extends Component {
         {this.state.table ? 
                 <span>
                     {'('}<select>
-                        {this.renderColumnNames(this.state.table)}//needs to allow for multiple columns
-                    </select>{')VALUES('}
-                    <input></input>{')'}//needs to allow mutiple input fields or split input based on # columns
+                        {this.renderColumnNames(this.state.table)}
+                    </select>
+                    <button>+</button>{')VALUES('}
+                    <input></input>{')'}
                 </span> : null}   
-                <button>RUN</button>            
+                <button onClick={this.runClickHandler}>RUN</button>            
             </span>
         );
     }
