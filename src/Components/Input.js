@@ -63,7 +63,7 @@ class Input extends Component {
     
     render() {
         return (
-            <div>
+            <div id='input'>
                 <select onChange={this.changeHandler} id='crud menu'>
                     <option ></option>
                     <option value='create'>CREATE TABLE</option>

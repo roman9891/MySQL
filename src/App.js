@@ -29,7 +29,22 @@ class App extends Component {
           type: `date`
         }
       ],
-      rows: []
+      rows: [
+        {
+          ID: 0,
+          String: 'thing',
+          Integer: '',
+          Real: 4.37,
+          Date: '12/10/20'
+        },
+        {
+          ID: 1,
+          String: 'doodad',
+          Integer: 7,
+          Real: 5.37,
+          Date: '12/11/20'
+        }
+      ]
     }]
   }
 

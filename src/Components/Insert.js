@@ -30,7 +30,14 @@ class Insert extends Component {
                 <select onChange={this.changeHandler} defaultValue={this.props.tables[0]?.tableName}>
                     {this.renderTableNames(this.props.tables)}
                 </select>
-        {this.state.table ? <span>{'('}<select>{this.renderColumnNames(this.state.table)}</select>{')VALUES('}<input></input>{')'}</span> : null}               
+        {this.state.table ? 
+                <span>
+                    {'('}<select>
+                        {this.renderColumnNames(this.state.table)}//needs to allow for multiple columns
+                    </select>{')VALUES('}
+                    <input></input>{')'}//needs to allow mutiple input fields or split input based on # columns
+                </span> : null}   
+                <button>RUN</button>            
             </span>
         );
     }
