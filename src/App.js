@@ -6,6 +6,7 @@ import React, { Component } from 'react';
 class App extends Component {
   state = {
     tables: [{
+      tableID: 0,
       tableName: `TestTable`,
       columns: [
         {
@@ -49,17 +50,27 @@ class App extends Component {
   }
 
   appHandler = table => {
-    const newTable = {...table}
+    const newTable = {tableID: this.state.tables.length,...table}
     
     this.setState({
       tables: this.state.tables.concat(newTable)
     })
   }
 
-  rowHandler = row => {
+  rowHandler = (row, table) => {
+    console.log('rowHandler input:', row, table)
     const newRow = {...row}
+    const tables = [...this.state.tables]
+    // const targetTable = {...this.state.tables.find(eachTable => eachTable.tableID === table.tableID)}
+    const targetTable = tables.find(eachTable => eachTable.tableID === table.tableID)
+    targetTable.rows.push(newRow)
 
-    console.log('rowHandler', newRow)
+    console.log(tables, targetTable)
+
+    this.setState({tables: tables}, () => console.log(this.state))
+    //must add row to approprate table
+    //find table
+    
   }
 
   render() {

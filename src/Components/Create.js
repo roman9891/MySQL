@@ -7,19 +7,13 @@ class Create extends Component {
         createColumns: [],
     }
 
-    changeHandler = e => {
-        if (e.target.id === 'create table name') {
-            console.log('hi')
-            this.setState({
-            createTableName: e.target.value.replaceAll(' ', '_')
-            }, () => console.log(this.state))
-        }
-    }
+    changeHandler = e => this.setState({createTableName: e.target.value.replaceAll(' ', '_')}, () => console.log(this.state))
     
     clickHandler = e => {
         const newTable = {
             tableName: this.state.createTableName,
-            columns: [{columnName: `ID`, type: `integer`}, ...this.state.createColumns]
+            columns: [{columnName: `ID`, type: `integer`}, ...this.state.createColumns],
+            rows: []
         }
         
         this.props.appHandler(newTable)
@@ -31,6 +25,9 @@ class Create extends Component {
     }
 
     inputHandler = state => {
+        //receives state from recursivebutton
+        //blank column is initially added when '+' is clicked
+        //appropriate column position is found with state.id and filled in with state.input
         let columns = this.state.createColumns
 
         columns[state.id].columnName = state.input
