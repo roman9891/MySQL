@@ -2,51 +2,11 @@ import './App.css';
 import Input from './Components/Input'
 import TableList from './Components/TableList'
 import React, { Component } from 'react';
+import {table as example} from './Examples'
 
 class App extends Component {
   state = {
-    tables: [{
-      tableID: 0,
-      tableName: `TestTable`,
-      columns: [
-        {
-        columnName: `ID`,
-        type: `integer`
-        },
-        {
-          columnName: `String`,
-          type: `string`
-        },
-        {
-          columnName: `Integer`,
-          type: `integer`
-        },
-        {
-          columnName: `Real`,
-          type: `real`
-        },
-        {
-          columnName: `Date`,
-          type: `date`
-        }
-      ],
-      rows: [
-        {
-          ID: 1,
-          String: 'thing',
-          Integer: '',
-          Real: 4.37,
-          Date: '12/10/20'
-        },
-        {
-          ID: 2,
-          String: 'doodad',
-          Integer: 7,
-          Real: 5.37,
-          Date: '12/11/20'
-        }
-      ]
-    }]
+    tables: example
   }
 
   appHandler = table => {
